@@ -29,8 +29,8 @@ OutputBaseFilename={#MyAppName} {#MyAppVersion} Setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-SignTool=SignToolHerl
-SignedUninstaller=yes
+;SignTool=SignToolHerl
+;SignedUninstaller=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
