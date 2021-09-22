@@ -1,0 +1,190 @@
+﻿#pragma kernel ComputeTerrainHeights
+#pragma kernel ComputePointCollisions
+#pragma kernel ComputeSphereCollisions
+
+#include "Common.hlsl"
+#include "Terrain.hlsl"
+
+static const int NumSphereStaticOffsets = 9;
+static const float3 SphereStaticOffsets[NumSphereStaticOffsets] =
+{
+  float3(0.0, -1.0, 0.0),
+
+  float3(-EighthArcCosine, -EighthArcCosine, 0.0),
+  float3(0.0, -EighthArcCosine, EighthArcCosine),
+  float3(EighthArcCosine, -EighthArcCosine, 0.0),
+  float3(0.0, -EighthArcCosine, -EighthArcCosine),
+
+  float3(-EighthArcCosine, 0.0, EighthArcCosine),
+  float3(EighthArcCosine, 0.0, EighthArcCosine),
+  float3(EighthArcCosine, 0.0, -EighthArcCosine),
+  float3(-EighthArcCosine, 0.0, -EighthArcCosine),
+};
+
+static const int NumSphereDynamicOffsets = 7;
+static const float4 SphereDynamicOffsets[NumSphereDynamicOffsets] =
+{
+  float4(0.0, -1.0, 0.0, 1.0),
+
+  float4(-EighthArcCosine, -EighthArcCosine, 0.0, 1.0),
+  float4(0.0, -EighthArcCosine, EighthArcCosine, 1.0),
+  float4(EighthArcCosine, -EighthArcCosine, 0.0, 1.0),
+
+  float4(-1.0, 0.0, 0.0, 1.0),
+  float4(0.0, 0.0, 1.0, 1.0),
+  float4(1.0, 0.0, 0.0, 1.0),
+};
+
+struct PointTestStruct
+{
+  float3 position;
+  float3 velocity;
+};
+
+struct SphereTestStruct
+{
+  float3 position;
+  float3 velocity;
+  float radius;
+};
+
+struct CollisionStruct
+{
+  float3 staticPosition;
+  float staticHeight;
+  float3 staticNormal;
+  float3 dynamicPosition;
+  float dynamicDistance;
+  float3 dynamicNormal;
+};
+
+uniform float FixedDeltaTime;
+
+StructuredBuffer<float2> TerrainLocations;
+RWStructuredBuffer<float> TerrainHeights;
+
+StructuredBuffer<PointTestStruct> PointTests;
+RWStructuredBuffer<CollisionStruct> PointCollisions;
+
+StructuredBuffer<SphereTestStruct> SphereTests;
+RWStructuredBuffer<CollisionStruct> SphereCollisions;
+
+[numthreads(GPU_THREAD_GROUP_SIZE, 1, 1)]
+void ComputeTerrainHeights(uint id : SV_DispatchThreadID)
+{
+  float2 location = TerrainLocations[id];
+  float height = TerrainHeight(location);
+  TerrainHeights[id] = height;
+}
+
+[numthreads(GPU_THREAD_GROUP_SIZE, 1, 1)]
+void ComputePointCollisions(uint id : SV_DispatchThreadID)
+{
+  float3 position = PointTests[id].position;
+  float3 velocity = PointTests[id].velocity;
+
+  float staticHeight = HeightAboveTerrain(position);
+
+  if (staticHeight < 0.0)
+  {
+    float3 staticPosition = position + staticHeight;
+    PointCollisions[id].staticPosition = staticPosition;
+    PointCollisions[id].staticNormal = TerrainNormal(staticPosition);
+  }
+
+  float maxDistance = length(velocity) * FixedDeltaTime;
+  float3 direction = normalize(velocity);
+  float hitDistance = TerrainCollisionDistance(position, direction, maxDistance);
+
+  if (hitDistance < 1.#INF)
+  {
+    float3 dynamicPosition = (hitDistance * direction) + position;
+    PointCollisions[id].dynamicPosition = dynamicPosition;
+    PointCollisions[id].dynamicNormal = TerrainNormal(dynamicPosition);
+  }
+
+  PointCollisions[id].staticHeight = staticHeight;
+  PointCollisions[id].dynamicDistance = hitDistance;
+}
+
+[numthreads(GPU_THREAD_GROUP_SIZE, 1, 1)]
+void ComputeSphereCollisions(uint id : SV_DispatchThreadID)
+{
+  float3 position = SphereTests[id].position;
+  float3 velocity = SphereTests[id].velocity;
+  float radius = SphereTests[id].radius;
+
+  float normalSampleSize = radius * 0.5;
+  float staticHeight = 0.0;
+  float3 staticPosition;
+  float dynamicDistance = 1.#INF;
+  float3 dynamicPosition;
+  float3 dynamicNormal;
+
+  for (int i = 0; i < NumSphereStaticOffsets; i++)
+  {
+    float3 testPosition = (SphereStaticOffsets[i] * radius) + position;
+    float height = HeightAboveTerrain(testPosition);
+
+    if (height < staticHeight)
+    {
+      staticPosition = testPosition;
+      staticHeight = height;
+    }
+  }
+
+  if (staticHeight < 0.0)
+  {
+    SphereCollisions[id].staticPosition = staticPosition;
+    SphereCollisions[id].staticNormal = TerrainNormalOffset(staticPosition, normalSampleSize);
+  }
+
+  if (length(velocity) > AlmostZeroVelocity)
+  {
+    float2 rotationDirection = float2(velocity.x, velocity.z);
+
+    if (length(rotationDirection) < AlmostZeroVelocity)
+    {
+      rotationDirection = float2(1.0, 0.0);
+    }
+
+    rotationDirection = normalize(rotationDirection);
+
+    float4x4 scale = GetScaleMatrix(float3(radius, radius, radius));
+    float4x4 rotation = GetRotationMatrixForwardToXZ(rotationDirection.x, rotationDirection.y);
+    float4x4 translation = GetTranslationMatrix(position);
+    float4x4 testMatrix = mul(translation, mul(rotation, scale));
+    
+    float maxDistance = length(velocity) * FixedDeltaTime;
+    float3 direction = normalize(velocity);
+   
+    for (int j = 0; j < NumSphereDynamicOffsets; j++)
+    {
+      float3 testPosition = mul(testMatrix, SphereDynamicOffsets[j]).xyz;
+      float hitDistance = TerrainCollisionDistance(testPosition, direction, maxDistance);
+
+      if (hitDistance < dynamicDistance)
+      {
+        float3 terrainNormal = TerrainNormalOffset(testPosition, normalSampleSize);
+
+        if (dot(velocity, terrainNormal) < 0.0)
+        {
+          dynamicPosition = testPosition;
+          dynamicDistance = hitDistance;
+          dynamicNormal = terrainNormal;
+          maxDistance = hitDistance;
+        }
+      }
+    }
+
+    if (dynamicDistance < 1.#INF)
+    {
+      dynamicPosition = (dynamicDistance * direction) + dynamicPosition;
+      SphereCollisions[id].dynamicPosition = dynamicPosition;
+      SphereCollisions[id].dynamicNormal = dynamicNormal;
+    }
+  }
+
+  SphereCollisions[id].staticHeight = staticHeight;
+  SphereCollisions[id].dynamicDistance = dynamicDistance;
+}

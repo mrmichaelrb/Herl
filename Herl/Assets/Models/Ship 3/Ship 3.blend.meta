@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: 16313ab31e5037a41bb125a696f532e0
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Ship_3_Blue
+    100004: Ship_3_Shadow_Caster
+    100006: Ship_3_Blue_LOD0
+    100008: Ship_3_Blue_LOD1
+    100010: Ship_3_Collider_Body
+    100012: Ship_3_Collider_Bridge
+    100014: Ship_3_Collider_Head
+    100016: Ship_3_Collider_Head_Left
+    100018: Ship_3_Collider_Head_Right
+    100020: Ship_3_Collider_Nacelle_Left
+    100022: Ship_3_Collider_Nacelle_Right
+    100024: Ship_3_Collider_Body_003
+    100026: Ship_3_Collider_Body_Center
+    100028: Ship_3_Collider_Body_Front
+    100030: Ship_3_Collider_Body_Main
+    100032: Ship_3_Collider_Body_Top_Engines
+    100034: Ship_3_Collider_Body_Wing_Front_Left
+    100036: Ship_3_Collider_Body_Wing_Front_Right
+    100038: Ship_3_Collider_Head_Bridge
+    100040: Ship_3_Collider_Body_Wing_Back_Left
+    100042: Ship_3_Collider_Body_Wing_Back_Right
+    100044: Ship_3_Blue_LOD2
+    100046: Ship_3_Red_LOD0
+    100048: Ship_3_Red_LOD1
+    400000: //RootNode
+    400002: Ship_3_Blue
+    400004: Ship_3_Shadow_Caster
+    400006: Ship_3_Blue_LOD0
+    400008: Ship_3_Blue_LOD1
+    400010: Ship_3_Collider_Body
+    400012: Ship_3_Collider_Bridge
+    400014: Ship_3_Collider_Head
+    400016: Ship_3_Collider_Head_Left
+    400018: Ship_3_Collider_Head_Right
+    400020: Ship_3_Collider_Nacelle_Left
+    400022: Ship_3_Collider_Nacelle_Right
+    400024: Ship_3_Collider_Body_003
+    400026: Ship_3_Collider_Body_Center
+    400028: Ship_3_Collider_Body_Front
+    400030: Ship_3_Collider_Body_Main
+    400032: Ship_3_Collider_Body_Top_Engines
+    400034: Ship_3_Collider_Body_Wing_Front_Left
+    400036: Ship_3_Collider_Body_Wing_Front_Right
+    400038: Ship_3_Collider_Head_Bridge
+    400040: Ship_3_Collider_Body_Wing_Back_Left
+    400042: Ship_3_Collider_Body_Wing_Back_Right
+    400044: Ship_3_Blue_LOD2
+    400046: Ship_3_Red_LOD0
+    400048: Ship_3_Red_LOD1
+    2100000: material78__sci_fi_texture_06_03_09_mod01_png
+    2100002: material88
+    2100004: material84
+    2100006: material82
+    2100008: material86
+    2100010: material90__06_04_09_alpha_bars_red_bar_png
+    2300000: //RootNode
+    2300002: Ship_3_Blue
+    2300004: Ship_3_Shadow_Caster
+    2300006: Ship_3_Blue_LOD0
+    2300008: Ship_3_Blue_LOD1
+    2300010: Ship_3_Collider_Body
+    2300012: Ship_3_Collider_Bridge
+    2300014: Ship_3_Collider_Head
+    2300016: Ship_3_Collider_Head_Left
+    2300018: Ship_3_Collider_Head_Right
+    2300020: Ship_3_Collider_Nacelle_Left
+    2300022: Ship_3_Collider_Nacelle_Right
+    2300024: Ship_3_Collider_Body_003
+    2300026: Ship_3_Collider_Body_Center
+    2300028: Ship_3_Collider_Body_Front
+    2300030: Ship_3_Collider_Body_Main
+    2300032: Ship_3_Collider_Body_Top_Engines
+    2300034: Ship_3_Collider_Body_Wing_Front_Left
+    2300036: Ship_3_Collider_Body_Wing_Front_Right
+    2300038: Ship_3_Collider_Head_Bridge
+    2300040: Ship_3_Collider_Body_Wing_Back_Left
+    2300042: Ship_3_Collider_Body_Wing_Back_Right
+    2300044: Ship_3_Blue_LOD2
+    2300046: Ship_3_Red_LOD0
+    2300048: Ship_3_Red_LOD1
+    3300000: //RootNode
+    3300002: Ship_3_Blue
+    3300004: Ship_3_Shadow_Caster
+    3300006: Ship_3_Blue_LOD0
+    3300008: Ship_3_Blue_LOD1
+    3300010: Ship_3_Collider_Body
+    3300012: Ship_3_Collider_Bridge
+    3300014: Ship_3_Collider_Head
+    3300016: Ship_3_Collider_Head_Left
+    3300018: Ship_3_Collider_Head_Right
+    3300020: Ship_3_Collider_Nacelle_Left
+    3300022: Ship_3_Collider_Nacelle_Right
+    3300024: Ship_3_Collider_Body_003
+    3300026: Ship_3_Collider_Body_Center
+    3300028: Ship_3_Collider_Body_Front
+    3300030: Ship_3_Collider_Body_Main
+    3300032: Ship_3_Collider_Body_Top_Engines
+    3300034: Ship_3_Collider_Body_Wing_Front_Left
+    3300036: Ship_3_Collider_Body_Wing_Front_Right
+    3300038: Ship_3_Collider_Head_Bridge
+    3300040: Ship_3_Collider_Body_Wing_Back_Left
+    3300042: Ship_3_Collider_Body_Wing_Back_Right
+    3300044: Ship_3_Blue_LOD2
+    3300046: Ship_3_Red_LOD0
+    3300048: Ship_3_Red_LOD1
+    4300000: Form40
+    4300002: Ship_3_Shadow_Caster
+    4300004: Ship_3_Blue
+    4300006: Ship_3_Collider_Head_Right
+    4300008: Ship_3_Collider_Head_Left
+    4300010: Ship_3_Collider_Bridge
+    4300012: Ship_3_Collider_Head
+    4300014: Ship_3_Collider_Nacelle_Right
+    4300016: Ship_3_Collider_Body
+    4300018: Ship_3_Collider_Nacelle_Left
+    4300020: Ship_3_Blue_LOD1
+    4300022: Ship_3_Blue_LOD0
+    4300024: Ship_3_Collider_Body_003
+    4300026: Ship_3_Collider_Body_Center
+    4300028: Ship_3_Collider_Body_Main
+    4300030: Ship_3_Collider_Body_Wing_Front_Right
+    4300032: Ship_3_Collider_Body_Front
+    4300034: Ship_3_Collider_Body_Wing_Front_Left
+    4300036: Ship_3_Collider_Body_Top_Engines
+    4300038: Ship_3_Collider_Head_Bridge
+    4300040: Ship_3_Collider_Body_Wing_Back_Right
+    4300042: Ship_3_Collider_Body_Wing_Back_Left
+    4300044: Ship_3_Blue_LOD2
+    4300046: Ship_3_Red_LOD1
+    4300048: Ship_3_Red_LOD0
+    7400000: Default Take
+    9500000: //RootNode
+    20500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 2
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

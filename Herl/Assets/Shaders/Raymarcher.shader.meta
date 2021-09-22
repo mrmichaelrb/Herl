@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: e851e01670d217d40a3a02d69d169e14
+timeCreated: 1534810909
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _TerrainDistanceHintTexture: {instanceID: 0}
+  - _TfNormalMap: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
